@@ -12,7 +12,7 @@ import Paper from '@mui/material/Paper';
 const backend_url = process.env.REACT_APP_HOST_URL;
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
-    backgroundColor: '#323232',
+    backgroundColor: '#024A4A',
     color: theme.palette.common.white,
   },
   [`&.${tableCellClasses.body}`]: {

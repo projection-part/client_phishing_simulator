@@ -63,7 +63,7 @@ const AddEmployee = ({ fetchEmployees }) => {
         onChange={(e) => setEmail(e.target.value)}
         required
       />
-      <Button type="submit" variant="contained" color="primary">
+      <Button type="submit" variant="contained" sx={{background: '#024A4A'}}>
         Add Employee
       </Button>
       <Snackbar

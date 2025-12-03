@@ -2,10 +2,13 @@ import * as React from 'react';
 import AddEmployee from './AddEmployee';
 import SendPhishingEmail from './SendPhishingEmail';
 import EmployeeList from './EmployeeList';
+import TotalEmployee from './TotalEmployee';
 import Logout from './Logout';
 import EmployeeCount from './EmployeeCount';
 import TotalClickedChart from './ClickedCount';
+import TotalClicked from "./TotalClicked";
 import ClickedPercentageChart from './ClickedPercentageChart';
+import AnalyticsClickedPercentageChart from './AnalyticsClickPercentageChart';
 import PropTypes from 'prop-types';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -28,6 +31,9 @@ import AddIcon from '@mui/icons-material/Add';
 import EmailIcon from '@mui/icons-material/Email';
 import PeopleIcon from '@mui/icons-material/People';
 import LogoutIcon from '@mui/icons-material/Logout';
+import AnalyticsIcon from '@mui/icons-material/Analytics';
+import GroupWorkIcon from '@mui/icons-material/GroupWork';
+import AdsClickIcon from '@mui/icons-material/AdsClick';
 
 
 const drawerWidth = 240;
@@ -35,7 +41,7 @@ const drawerWidth = 240;
 function ResponsiveDrawer(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
-  const [selectedContent, setSelectedContent] = React.useState('Admin Dashboard');
+  const [selectedContent, setSelectedContent] = React.useState('Analytics');
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
@@ -44,14 +50,20 @@ function ResponsiveDrawer(props) {
     setMobileOpen(false);
   };
   const menuItems = [
-    { text: 'Admin Dashboard', icon: <DashboardIcon />},
+    { text: 'Analytics', icon: <AnalyticsIcon />},
+    { text: 'Total Employees', icon: <GroupWorkIcon />},
+    { text: 'Total Clicked', icon: <AdsClickIcon />},
+    //{ text: 'Admin Dashboard', icon: <DashboardIcon />},
     { text: 'Add employee', icon: <AddIcon />},
     { text: 'Send email', icon: <EmailIcon />},
     { text: 'Employee list', icon: <PeopleIcon />}
   ];
   const drawer = (
-    <div>
-      <Toolbar />
+    <div style={{background:'#024a4a', color:'white', minHeight: '100vh'}}>
+      <Typography variant="h5" sx={{ my: 2, ml:5 }}>
+        Dashboard
+      </Typography>
+      
       <Divider />
       <List>
         {menuItems.map((item) => (
@@ -59,7 +71,7 @@ function ResponsiveDrawer(props) {
             <ListItemButton onClick={() => handleListItemClick(item.text)}
               selected={selectedContent === item.text}
               >
-              <ListItemIcon>
+              <ListItemIcon sx={{color: 'white'}}>
                 {item.icon}
               </ListItemIcon>
               <ListItemText primary={item.text} />
@@ -75,7 +87,7 @@ function ResponsiveDrawer(props) {
               selected={selectedContent === text}
               >
               <ListItemIcon>
-              <LogoutIcon />
+              <LogoutIcon sx={{color: 'white'}} />
               </ListItemIcon>
               <ListItemText primary={<Logout />} />
             </ListItemButton>
@@ -87,7 +99,13 @@ function ResponsiveDrawer(props) {
 
   const renderContent = () => {
     switch (selectedContent) {
-      case 'Admin Dashboard':
+      case 'Analytics':
+        return <AnalyticsClickedPercentageChart />;
+        case 'Total Employees':
+        return <TotalEmployee />;
+        case 'Total Clicked':
+        return <TotalClicked />;
+      /*case 'Admin Dashboard':
         return (
           <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '20px' }}>
           <div style={{ flex: '1 1 300px', minWidth: '300px' }}>
@@ -100,7 +118,7 @@ function ResponsiveDrawer(props) {
               <TotalClickedChart />
           </div>
       </div>
-        );
+        );*/
       case 'Add employee':
         return <AddEmployee />;
       case 'Send email':
@@ -120,6 +138,7 @@ function ResponsiveDrawer(props) {
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
       <AppBar
+      color='#b9b7b7ff'
         position="fixed"
         sx={{
           width: { sm: `calc(100% - ${drawerWidth}px)` },
@@ -174,7 +193,7 @@ function ResponsiveDrawer(props) {
       </Box>
       <Box
         component="main"
-        sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
+        sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)`, } }}
       >
         <Toolbar />
         {renderContent()}

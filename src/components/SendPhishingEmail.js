@@ -81,7 +81,7 @@ const SendPhishingEmail = () => {
         </Select>
       </FormControl>
 
-      <Button variant="contained" color="primary" onClick={sendEmail}>
+      <Button variant="contained" sx={{background:'#024A4A'}} onClick={sendEmail}>
         Send Phishing Email
       </Button>
       <Snackbar
