@@ -69,17 +69,18 @@ const Signup = () => {
                 />
                 <Button
                     variant="contained"
-                    color="primary"
+                    
                     type="submit"
                     size="large"
                     fullWidth
+                    sx={{ background: '#024A4A'}}
                 >
                     Sign Up
                 </Button>
 
                 <Typography align="center" sx={{ mt: 2 }}>
                     Already have an account?{' '}
-                    <Button component={Link} to="/login" variant="text" color="primary">
+                    <Button component={Link} to="/login" variant="text" sx={{ color: '#024A4A'}}>
                         Login
                     </Button>
                 </Typography>
